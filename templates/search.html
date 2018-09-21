@@ -1,0 +1,35 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block mainbody %}
+<h2>{{ message }}</h2>
+<div class="search">
+	<div class="s-bar">
+	   <form>
+		<input type="text" id="search" name="search" placeholder="Search any keywords!" required>
+		<input type="submit" name="submitsearch" value="Search!"/>
+	   </form>
+	</div>
+</div>
+<h3>Search result for <b>{{ search_content }}</b>:</h3>
+<p>{{ post_count }}&nbsp;results</p>
+<!-- search results-->
+
+<div class="search">
+    <fieldset id="body">
+        {% for post in search_posts %}
+            <fieldset id="post_{{ post.id }}">
+                <a href="{% url 'connaisaV0:viewpost' post.id %}">
+                    <p>{{ post.name }}</p>
+                    <p>Category: {{ post.category }}</p>
+                    <p>Level: {{ post.level}}</p>
+                    <p>Status: {% if post.active %}Active{% else %}Inactive{% endif %}</p>
+                    <p>Poster: {{ post.poster.username|capfirst }}</p>
+                    <P>Time posted: {{ post.time_created }}</P>
+                </a>
+            </fieldset>
+        {% endfor %}
+    </fieldset>
+</div>
+
+{% endblock mainbody %}

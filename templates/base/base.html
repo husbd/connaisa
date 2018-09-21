@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
+<html lang="en">
+<head>
+    <!-- BASICS -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- OPEN GRAPH PROTOCAL -->
+    <meta property="og:title" content="Connaisa" />
+    <meta property="og:url" content="https://connaisa.com/" />
+    <meta property="og:image" content="{% static 'images/logo.png' %}" />
+
+    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/png">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/isotope.css' %}" media="screen" />
+    <link rel="stylesheet" href="{% static 'js/fancybox/jquery.fancybox.css' %}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/con-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- skin -->
+    <link rel="stylesheet" href="{% static 'skin/default.css' %}">
+    <!-- w3 -->
+    <link rel="stylesheet" href="{% static 'css/w3.css' %}">
+    <!-- my css -->
+    <link rel="stylesheet" href="{% static 'css/my-style.css' %}">
+    <!-- content -->
+    <meta name="keywords" content="{% block keyword %}Mandarin, Japanese, paino, guitar{% endblock keyword %}">
+    <meta name="description" content="{% block description %}This is connaisa base page{% endblock description %}">
+    <title>{% block pageTitle %}Connaisa Base Page{% endblock pageTitle %}</title>
+</head>
+<body>
+{% include "base/header.html" %}
+{% include "base/navigate.html" %}
+
+<main>
+    {% block mainbody %}
+        Welcome to Connaisa V0.1 development.
+        Main body part goes here. If you are seeing this, work still needs to be done.
+    {% endblock mainbody %}
+</main>
+
+{% include "base/footer.html" %}
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block mainbody %}
+    <h2>{{ message }}</h2>
+    <h2>Welcome back! &nbsp;{{ user_profile.username|capfirst}},</h2>
+    <!-- user profile -->
+    <table id="profile">
+        <tr>
+            <h3>User Profile</h3>
+        </tr>
+        <tr>
+            {% if user_profile.photo%}
+                <img src="{{ user_profile.photo.url }}" alt="photo" style="width:100px;height:100px;">
+            {% else %}
+                <img src="{% static "images/timg.jpg" %}" alt="photo" style="width:100px;height:100px;">
+            {% endif %}
+        </tr>
+        <tr>
+        <td><label for="username">Username: </label></td>
+        <td><p name="username" id="username">{{ user_profile.username }}</p></td>
+        </tr>
+        <tr>
+        <td><label for="email">Email: </label></td>
+        <td><p name="email" id="email">{{ user_profile.email }}</p></td>
+        </tr>
+        <tr>
+            <td>
+                {% if is_profile_complete%}
+                    <p>Your profile looks fine!</p>
+                {% else %}
+                    <p>Tell us more about you!</p>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'connaisaV0:editprofile'%}">Edit my profile</a></td>
+        </tr>
+    </table>
+    <!-- user description -->
+    <form method = "post">
+        <div class="header-right description">
+            <div id="descriptionBox">
+                <form id="descriptionForm">
+                    <fieldset id="body">
+                        <fieldset>
+                            <label for="description">About me: </label>
+                            {% if has_description%}
+                                <textarea name="description" id="description" rows="8" cols="50"
+                                          placeholder="Let us know you better!">
+{{ user_profile.description }}
+                                </textarea>
+                            {% else %}
+                                <textarea name="description" id="description" rows="8" cols="50"
+                                          placeholder="Let us know you better!"></textarea>
+                            {% endif %}
+                        </fieldset>
+                        <input type="submit" id="save_description" value="Save">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </form>
+    <!-- user's posts -->
+    <h3>My post:</h3>
+        <fieldset id="posts">
+        {% for post in posts %}
+            <fieldset id="post_{{ post.id }}">
+                <a href="{% url 'connaisaV0:viewpost' post.id %}">
+                    <p>{{ post.name }}</p>
+                    <p>Category: {{ post.category }}</p>
+                    <p>Level: {{ post.level}}</p>
+                    <p>Status: {% if post.active %}Active{% else %}Inactive{% endif %}</p>
+                    <P>Time posted: {{ post.time_created }}</P>
+                </a>
+            </fieldset>
+        {% endfor %}
+    </fieldset>
+
+{% endblock mainbody %}

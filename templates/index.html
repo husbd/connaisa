@@ -1,0 +1,134 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block mainbody %}
+    <!-- search -->
+    <h2>{{ message }}</h2>
+    <section class="cm-searching" id="search_bar">
+        <div class="class=row mar-bot40">
+            <div class="align-center">
+               <form>
+                <input type="text" id="search" name="search" placeholder="Search any keywords!" required>
+                <input type="submit" id="submitsearch" value="Search!"/>
+              </form>
+                <p>Popular searches: <a href="/?search=guitar">guitar, &nbsp;</a> <a href="/?search=japanese">japanese, &nbsp;</a></p>
+            </div>
+        </div>
+    </section>
+    <!-- about -->
+    <section id="section-about" class="con-section appear clearfix">
+        <div class="container">
+
+            <div class="section-header">
+                <h2 class="section-heading animated mar-bot30" data-animation="bounceInUp">What is Connaisa?</h2>
+                <div class="row">
+                    <div class="col-xs-12 col-md-5 col-md-offset-1 mar-top50">
+                        <div class="align-left">
+                            <i class="fa fa-quote-left fa-lg con-blue" aria-hidden="true"></i>
+                        </div>
+                        <h4 class="align-left mar-left30">A platform to</h4>
+                        <h4 class="align-left mar-left30">teach and learn knowledge and skills</h4>
+                        <h4 class="align-right mar-right30">with people around the world</h4>
+                        <div class="align-right">
+                            <i class="fa fa-quote-right fa-lg con-green" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-5">
+                        <div class="embed-container">
+                        <iframe width="487.5" height="315" src="https://www.youtube.com/embed/V0fvMRjv_HA" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <br>
+            <div class="section-header mar-top40">
+                <h2 class="section-heading animated mar-bot10" data-animation="bounceInUp">How to use Connaisa?</h2>
+                <!--<img width="1000" src="img/howtoconn.svg">-->
+                <img class="con-img-responsive" width="1000" src="{% static "images/howtoconn.svg" %}">
+            </div>
+            <br>
+            <div class="section-header mar-top40">
+                <h2 class="section-heading animated mar-bot10" data-animation="bounceInUp">You are both Coner and Conee</h2>
+                <img class="con-img-responsive" width="980" height="481.69" src="{% static "images/coner-conee.svg" %}">
+            </div>
+            <div class="section-header mar-top40">
+                <div class="row">
+                    <div class="col-md-offset-7 col-md-5">
+                        <h3 class="mar-bot10 con-blue" id="more-details" data-animation="bounceInUp" onclick="showDetails()">more details about Connaisa...</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="mar-top40 align-left" id="details" style="margin-left:100px; margin-right:100px">
+                <p>Connaisa is a platform to freely exchange knowledge and skills with people around the world. Users select the subjects they are interested to teach and learn. Then, our system automatically matches the users with the same interests. Coners, the teachers, provide courses; while Conees, the students, take courses. They can directly interact with one another through posts, video chats, instant messages, and public broadcasts.</p>
+                <br>
+                <h3>Matching Coners and Conees</h3>
+                <p>Our matching system automatically suggests the best matches to the users, based on the interests of their choices. Users can also actively search for teaching or learning opportunities via other users’ profile pages. Coners can increase their search performance by sponsoring the platform. Furthermore, Connaisa provides online storage spaces for Coners to store their teaching materials, which can be posted on their personal profile pages (handouts, videos, demos, etc.). Coners decide whether the materials are public or can only be viewed with permission.</p>
+                <br>
+                <h3>Direct Interactions with Other Users</h3>
+                <p>Users can interact with other users: posts, instant messages, video chats, and public broadcasting. First, users can post questions and comments under other users’ profile pages with permission. The owners of the page can leave corresponding answers and replies. Second, with instant messaging, users can directly communicate with other users in words. Third, through our video chat feature, Coners can easily provide Conees with one-on-one lectures, allowing instant interactions. Last, with our public broadcasting feature, Coners can provide one-to-many lectures and have online face-to-face group discussions and activities.</p>
+                <br>
+                <h3>Connaisa Coin System</h3>
+                <p>Connaisa Coins (hereinafter referred as “Coins”) are designed for the transactions between users in the platform. Users gain Coins in two ways - users can earn Coins by providing courses or they can purchase Coins from our platform. Coins can be used to take courses on the platform or cashed out. The exchange rate of USD and Coins will be fixed. We will charge processing fee for every transaction between users.</p>
+                <br>
+                <h3>Goal of Connaisa</h3>
+                <p>Our ultimate goal is to eliminate the inequality of educational resources. We believe that knowledge and skills are sharing economy. We are enthusiastic about creating a world where people share learning resources. Currently, customers need to pay to learn new knowledge and skills. However, with our platform, customers will teach their own expertise in exchange for learning new knowledge and skills. Our goal is to make learning resources costless, freely exchangeable, and publicly accessible. We look forward that one day Connaisa will lead the world towards educational equality.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- contact -->
+    <section id="section-contact" class="con-section back-blue appear clearfix">
+        <div class="container">
+
+            <div class="row mar-bot40">
+                <div class="col-md-offset-3 col-md-6">
+                    <div class="section-header">
+                        <h2 class="section-heading animated" data-animation="bounceInUp">Contact us</h2>
+                        <p>Thank you for your interest in our educational platform. Please leave your message. We will soon get back to you.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="cform contact-form">
+                        <div class="sendmessage" id="contactSendmessage">
+                             Your message has been sent. Thank you!
+                        </div>
+                        <form action="" method="post" role="form" class="contactForm" id="contact-form">
+                          <div class="form-group pad-bot30 align-center" id="queryType">
+                            <input type="radio" name="contact-type" value="feedback"><span class="mar-right30 mar-left5">Feedback</span>
+                            <input type="radio" name="contact-type" value="media"><span class="mar-right30 mar-left5">Media Inquiry</span>
+                            <input type="radio" name="contact-type" value="join"><span class="mar-right30 mar-left5">Join Our Team</span>
+                            <input type="radio" name="contact-type" value="join"><span class="mar-right30 mar-left5">Sponsor Us</span>
+                            <input type="radio" name="contact-type" value="join"><span class="mar-right30 mar-left5">Other</span>
+                          </div>
+                          <div class="form-group">
+                            <label for="name">Name*</label>
+                            <input type="text" name="con_name" class="form-control" id="contactName"/>
+                            <div class="validation" id="con_name_validation"></div>
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Email*</label>
+                            <input type="email" class="form-control" name="con_email" id="contactEmail" data-msg="Please enter a valid email" />
+                            <div class="validation" id="con_email_validation"></div>
+                          </div>
+                          <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" name="message" id="contactMessage" rows="5"></textarea>
+                          </div>
+                          <div class="align-center">
+                            <button type="submit" class="btn bold btn-lg btn-blue border-rd-15" onclick="contactSubmit();">Send Message</button>
+                          </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="align-center">
+            <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBhtw6Yk257IJoCUA6g96ULQKBV0NAGLdY&q=Siebel+Center,Illinois+US" width="1000" height="500"></iframe>
+        </div>
+    </section>
+{% endblock mainbody %}

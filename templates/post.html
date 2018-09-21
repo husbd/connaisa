@@ -1,0 +1,31 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block mainbody %}
+    <h2>{{ message }}</h2>
+    <h3>Post name: {{ post_info.postname }}</h3>
+    <p>Category: {{ post_info.category }}</p>
+    <p>Level: {{ post_info.level }}</p>
+    <p>Description: {{ post_info.description }}</p>
+    {% if post_info.poster_photo%}
+        <img src="{{ post_info.poster_photo.url }}" alt="photo" style="width:100px;height:100px;">
+    {% else %}
+        <img src="{% static "images/timg.jpg" %}" alt="photo" style="width:100px;height:100px;">
+    {% endif %}
+    <div>
+        <a href="{% url 'connaisaV0:userpage' post_info.poster_id%}">Poster: {{ post_info.poster_name|capfirst}}</a>
+    </div>
+    <p>Status:
+        {% if post_info.active%}
+            &nbsp;&nbsp;Active
+        {% else %}
+            &nbsp;&nbsp;Inactive
+        {% endif %}
+    </p>
+    {% if editable%}
+        <a href="{% url 'connaisaV0:editpost' post_info.id %}">Edit post</a>
+    {% else %}
+        <a href="#">Contact poster</a>
+        <a href="#">Register this class!</a>
+    {% endif %}
+{% endblock mainbody %}

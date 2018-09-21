@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<section class="featured" id="home">
+    <div class="container">
+        <div class="row mar-bot40">
+            <div class="col-xs-12 col-md-6">
+                <div class="align-center">
+                    <!--<div class="w3-content w3-display-container">-->
+                    <div class="embed-container">
+                      <iframe width="560" height="315" src="https://www.youtube.com/embed/9I0tgu58pO4" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="align-center mar-top-75 mar-left-50">
+                    <h2 class="con-slogan">Exchange knowledge and skills with people around the world</h2>
+                    {% if user.userid%}
+                    <a href="{% url 'connaisaV0:accounthome'%}" class="btn bold btn-lg btn-blue border-rd-15">Account Home</a>
+                    {% else %}
+                    <a href="{% url 'connaisaV0:signup'%}" class="btn bold btn-lg btn-blue border-rd-15">Sign up</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

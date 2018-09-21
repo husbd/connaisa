@@ -1,0 +1,37 @@
+{% load static %}
+<section id="header" class="appear"></section>
+<div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="fa fa-bars color-white"></span>
+        </button>
+        <a class="navbar-brand logo" href="{% url 'connaisaV0:index'%}" data-0="margin-top:25px;" data-300="margin-top:10px;">
+            <img class="img-responsive" width="221.79" height="43.1" src="{% static 'images/logo.svg' %}">
+        </a>
+    </div>
+    <div class="navbar-collapse collapse">
+        {% if user.userid%}
+            <a href="{% url 'connaisaV0:index'%}">Main page</a>
+            <span class="dropdown" class="btn btn-blue border-rd-15">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    My account
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'connaisaV0:accounthome'%}">Account home</a></li>
+                    <li><a href="#">My classes</a></li>
+                    <li><a href="{% url 'connaisaV0:newpost'%}">Write a new post</a></li>
+                    <li><a href="{% url 'connaisaV0:editprofile'%}">My profile</a></li>
+                    <li><a href="{% url 'connaisaV0:logout'%}">Log out</a></li>
+                </ul>
+            </span>
+
+            <a href="">About us</a>
+        {% else %}
+            <a href="{% url 'connaisaV0:index'%}">Main page</a>
+            <a href="{% url 'connaisaV0:login'%}">Log in</a>
+            <a href="{% url 'connaisaV0:signup'%}" class="btn btn-blue border-rd-15">Sign up</a>
+            <a href="">About us</a>
+        {% endif %}
+    </div>
+</div>

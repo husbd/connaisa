@@ -1,0 +1,88 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block mainbody %}
+    <h2>{{ message }}</h2>
+    <h2>Tell us more to make the post more attractive!</h2>
+    <h3>Poster:
+        {% if user_profile.photo%}
+            <img src="{{ user_profile.photo.url }}" alt="photo" style="width:100px;height:100px;">
+        {% else %}
+            <img src="{% static "images/timg.jpg" %}" alt="photo" style="width:100px;height:100px;">
+        {% endif %}
+        {{ user_profile.username|capfirst }}({{ user_profile.email }})</h3>
+    <form method = "post">
+    <div class="header-right profile">
+        <div id="postBox">
+            <form id="postForm">
+                <fieldset id="body">
+                    <fieldset>
+                        <label for="postname">Post Name: </label>
+                        <input type="text" name="postname" id="postname" size="60" placeholder="Describe your post!"
+                               value="{{ post_info.postname }}" required>
+                    </fieldset>
+                    <fieldset>
+                        <label for="category">Category: </label>
+                        <select name="category" id="category">
+                            <option value="0">Art</option>
+                            <option value="1">Sports</option>
+                            <option value="2">Language</option>
+                            <option value="3">Academic</option>
+                            <option value="4">Living</option>
+                            <option value="5">other</option>
+                        </select>
+                    </fieldset>
+                    <fieldset>
+                        <label for="level">Level: </label>
+                        <select name="level" id="level">
+                            <option value="0">Beginner</option>
+                            <option value="1">Amateur</option>
+                            <option value="2">Intermediate</option>
+                            <option value="3">Proficient</option>
+                            <option value="4">Expert</option>
+                        </select>
+                    </fieldset>
+                    <fieldset>
+                        <label for="description">Description: </label>
+                        <textarea name="description" id="description" rows="12" cols="62"
+                                  placeholder="Let us know your post better!" required>{{ post_info.description }}</textarea>
+                    </fieldset>
+                    {% if not post_info.newpost%}
+                        <fieldset>
+                        <table >
+                            <tr>
+                            <th><label for="active">Active: </label></th>
+                            <th><input type="checkbox" name="active" id="active" /></th>
+                            </tr>
+                            <tr>
+                            <th><label for="delete">Delete post: </label></th>
+                            <th><input type="checkbox" name="delete" id="delete" onchange="deletionAlert()" /></th>
+                            </tr>
+                        </table>
+                        </fieldset>
+                    {% endif %}
+                    {% if post_info.newpost%}
+                        <input type="submit" id="post" value="Post!">
+                    {% else %}
+                        <input type="submit" id="save" value="Save">
+                    {% endif %}
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    </form>
+<script  type="text/javascript">
+document.getElementById("category")[{{ post_info.category }}].selected=true;
+document.getElementById("level")[{{ post_info.level }}].selected=true;
+function deletionAlert() {
+    if(document.getElementById("delete").checked==true){
+        alert('Are you sure? Deletion is not reversible.\nIf you do wish to delete this post, go ahead and click the save button.');
+    }
+}
+{% if not post_info.newpost%}
+    {% if post_info.active%}
+        document.getElementById("active").checked=true;
+    {% endif %}
+{% endif %}
+</script>
+{% endblock mainbody %}

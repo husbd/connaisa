@@ -1,0 +1,55 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block mainbody %}
+    <h2>{{ message }}</h2>
+    <h2>{{ user_profile.username|capfirst}}</h2>
+    <span>Membership since: {{ user_profile.time_created.date}}</span>
+    <!-- user profile -->
+    <table id="profile">
+        <tr>
+            <h3>User Profile</h3>
+        </tr>
+        <tr>
+            {% if user_profile.photo%}
+                <img src="{{ user_profile.photo.url }}" alt="photo" style="width:100px;height:100px;">
+            {% else %}
+                <img src="{% static "images/timg.jpg" %}" alt="photo" style="width:100px;height:100px;">
+            {% endif %}
+        </tr>
+        <tr>
+        <td><label for="username">Username: </label></td>
+        <td><p name="username" id="username">{{ user_profile.username }}</p></td>
+        </tr>
+        <tr>
+        <td><label for="email">Email: </label></td>
+        <td><p name="email" id="email">{{ user_profile.email }}</p></td>
+        </tr>
+    </table>
+    <!-- user description -->
+            <h4>Introduction: </h4>
+            <p>
+            {% if has_description%}
+                {{ user_profile.description }}
+            {% else %}
+                This user does not have any introduction.
+            {% endif %}
+            </p>
+
+    <!-- user's posts -->
+    <h3>Posts:</h3>
+    <fieldset id="posts">
+        {% for post in posts %}
+            <fieldset id="post_{{ post.id }}">
+                <a href="{% url 'connaisaV0:viewpost' post.id %}">
+                    <p>{{ post.name }}</p>
+                    <p>Category: {{ post.category }}</p>
+                    <p>Level: {{ post.level}}</p>
+                    <p>Status: {% if post.active %}Active{% else %}Inactive{% endif %}</p>
+                    <P>Time posted: {{ post.time_created }}</P>
+                </a>
+            </fieldset>
+        {% endfor %}
+    </fieldset>
+
+{% endblock mainbody %}
